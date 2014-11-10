@@ -23,4 +23,7 @@ will be opened by that program.
 Turning the "Audiophile" feature off will cause Qobuz XBMC to revert to its default behaviour of playing Qobuz
 streams through XBMC.
 
+Version 1.1.1 Now adds the support for individual tracks to take advantage of this "Audiophile" option.
+For this to work you must turn off "Play the next song automatically" under Sytem -> Settings -> Music -> Playback.
+
 
