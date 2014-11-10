@@ -1,3 +1,8 @@
+1.1.1
+-----
+* Extended Audiophile Option to play individual tracks
+* Bugfix to remove invalid import in album.py
+
 1.1.0
 -----
 * Added Audiophile option - creates playlist opened by external player
