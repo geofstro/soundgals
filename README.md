@@ -26,4 +26,13 @@ streams through XBMC.
 Version 1.1.1 Now adds the support for individual tracks to take advantage of this "Audiophile" option.
 For this to work you must turn off "Play the next song automatically" under Sytem -> Settings -> Music -> Playback.
 
+Version 1.1.2 Adds choice within Audiophile settings between Gapless and non-Gapless.
+Gapless is preferable; but doesn't guarantee long albums/playlists will play to the end.
+When Gapless is turned off a slider may be used to adjust the gap in seconds between tracks.
+Sufficient time needs to be allowed for each track to load into your player of choice.
 
+The number of seconds needs to be high enough so that tracks are not cut off before they finish playing;
+but not so high as to result in unnecessarily long gaps between tracks.
+
+8 seconds seems to work well and is the default. Some experimentation is in order though as each user's systems
+and requirements may differ.
