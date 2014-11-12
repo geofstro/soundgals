@@ -1,12 +1,10 @@
 #import string,cgi,time
 #from os import curdir, sep
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-from gui.util import lang, getImage, runPlugin, getSetting
 import socket
 import re
 import sys
 import urllib2
-
 
 VERSION = '0.0.1'
 
@@ -155,7 +153,7 @@ class QobuzHttpResolver_Handler(BaseHTTPRequestHandler):
         api.login(api.username, api.password)
         node = getNode(Flag.TRACK, {'nid': request.track_id})
         streaming_url = node.get_streaming_url()
-        if not streaming_url and getSetting('audiophile') == 'false':
+        if not streaming_url:
             raise RequestFailed()
         self.send_response(303, "Resolved")
         self.send_header('content-type', stream_mime)

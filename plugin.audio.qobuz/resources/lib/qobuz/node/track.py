@@ -15,6 +15,7 @@
 #     You should have received a copy of the GNU General Public License
 #     along with xbmc-qobuz.   If not, see <http://www.gnu.org/licenses/>.
 import os
+import xbmc
 from constants import Mode
 from node import Flag, ErrorNoData
 from inode import INode
@@ -140,9 +141,6 @@ class Node_track(INode):
     def get_streaming_url(self):
     	theUrls = ''
     	launchApp = False
-    	#if getSetting('audiophile') == 'true':
-    					#launchApp = True
-    	#setSetting(id="audiophile", value='false')
         data = self.__getFileUrl()
         if not data:
             return False
@@ -163,29 +161,39 @@ class Node_track(INode):
             	if getSetting('audiophile') == 'true':
     					launchApp = True
     	if launchApp:
-        	qobuzPlaylist = str(os.path.expanduser('~'))
-        	qobuzPlaylist += '/Music/QobuzNow.m3u8'
-        	completeName = os.path.abspath(qobuzPlaylist)
+        	#qobuzPlaylist = str(os.path.expanduser('~'))
+        	#qobuzPlaylist += '/Music/QobuzMix.m3u8'
+        	#completeName = os.path.abspath(qobuzPlaylist)
         	#file1 = open(completeName,"r")
         	#theLines=file1.read()
         	#file1.close
         	#if not (data['url'] in theLines):
+        	#file1 = open(completeName,"a")
+        	#file1.write(theUrls)
+        	#file1.close
+        	qobuzPlaylist = str(os.path.expanduser('~'))
+        	qobuzPlaylist += '/Music/QobuzNow.m3u8'
+        	completeName = os.path.abspath(qobuzPlaylist)
         	file1 = open(completeName,"w")
         	file1.write(theUrls)
         	file1.close
-        		#setSetting(id="audiophile", value='true')
         	if _platform == "darwin":
-        		try:           
+        		try:
+        			#cmd = """osascript<<END
+						#tell application "Finder"
+							#set frontmost of process "HQPlayerDesktop3" to true
+						#end tell
+					#END"""           
         			cmd = """osascript -e 'tell app "HQPlayerDesktop" to quit'"""
         			os.system(cmd)
         			os.system("/Applications/HQPlayerDesktop.app/Contents/MacOS/HQPlayerDesktop "+completeName+"&")
-        			cmd = """osascript<<END
-        				launch application "System Events"
-						tell application "System Events"
-							set frontmost of process "HQPlayerDesktop3" to true
-						end tell
-					END"""
-        			os.system(cmd)
+        			#cmd = """osascript<<END
+        				#launch application "System Events"
+						#tell application "System Events"
+							#set frontmost of process "HQPlayerDesktop3" to true
+						#end tell
+					#END"""
+        			#os.system(cmd)
         		except:
         			os.system("open "+completeName)
         	elif _platform == "win32":
