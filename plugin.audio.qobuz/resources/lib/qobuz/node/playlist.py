@@ -96,10 +96,11 @@ class Node_playlist(INode):
             		theUrls += '\n'
             		if getSetting('audiophile') == 'true':
     					launchApp = True
-            		if getSetting('gapless') == 'false' and launchApp:
-            			node.get_streaming_url()
-            			interlude = int(getSetting('interlude'))
-            			time.sleep(int(track_duration)+interlude)
+            self.add_child(node)
+            if getSetting('gapless') == 'false' and launchApp:
+            	node.get_streaming_url()
+            	interlude = int(getSetting('interlude'))
+            	time.sleep(int(track_duration)+interlude)
         if getSetting('gapless') == 'true' and launchApp:
         	qobuzPlaylist = str(os.path.expanduser('~'))
         	qobuzPlaylist += '/Music/QobuzNow.m3u8'
@@ -109,12 +110,14 @@ class Node_playlist(INode):
         	file1.write(toFile)
         	file1.close
         	if _platform == "darwin":
-        		try:           
+        		try:          
         			cmd = """osascript -e 'tell app "HQPlayerDesktop" to quit'"""
         			os.system(cmd)
         			os.system("/Applications/HQPlayerDesktop.app/Contents/MacOS/HQPlayerDesktop "+completeName+"&")
         			#cmd = """osascript<<END
         				#launch application "System Events"
+        					#tell application "System Events"
+        						#set frontmost of process "HQPlayerDesktop3" to true
         					#end tell
         			#END"""
         			os.system(cmd)
